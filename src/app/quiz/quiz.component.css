@@ -5,8 +5,8 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    color: #fff;
+    background: linear-gradient(135deg, #1f1c18, #6b6b6b);
+    color: #ffffff;
     font-family: 'Arial', sans-serif;
     text-align: center;
     padding: 20px;
@@ -16,6 +16,7 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease-in-out;
+    color: #000000; /* MotoGP black */
 }
 
 .quiz-container p {
@@ -23,13 +24,23 @@
     margin-bottom: 1rem;
     animation: fadeIn 1s ease-in-out;
 }
-
+.home-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: black; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 .quiz-container button {
     margin: 5px;
     padding: 10px 20px;
     font-size: 1.2rem;
-    background-color: #ff6f61;
-    color: #fff;
+    background-color: #e10600; /* MotoGP red */
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -38,19 +49,21 @@
 }
 
 .quiz-container button:hover {
-    background-color: #ff3d2e;
+    background-color: #b80000; /* Darker MotoGP red */
 }
 
 .feedback {
     margin-top: 1rem;
     font-size: 1.2rem;
     animation: fadeIn 1s ease-in-out;
+    color: #000000; /* MotoGP black */
 }
 
 .timer {
     margin-top: 1rem;
     font-size: 1.5rem;
     animation: fadeIn 1s ease-in-out;
+    color: #000000; /* MotoGP black */
 }
 
 @keyframes fadeInDown {

@@ -1,4 +1,3 @@
-/* Contenedor principal de la página de inicio */
 .home-container {
     display: flex;
     flex-direction: column;
@@ -6,24 +5,27 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    color: #fff;
+    background: linear-gradient(135deg, #000000, #333333);
+    color: #ffffff;
     font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
-  /* Estilo del título */
+/* Estilo del título */
 .home-container h1 {
     font-size: 3rem;
     margin-bottom: 2rem;
     animation: fadeInDown 1s ease-in-out;
+    color: #ff4f4f; /* MotoGP red */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
 }
 
-  /* Estilo de los botones */
+/* Estilo de los botones */
 .home-container .start-button,
 .home-container .ranking-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
+    background-color: #ff4f4f; /* MotoGP red */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #000000; /* Borde negro */
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -32,15 +34,17 @@
     margin: 10px;
     cursor: pointer;
     border-radius: 8px;
-    transition: transform 0.3s, background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para botón */
 }
 
 .home-container .start-button:hover,
 .home-container .ranking-button:hover {
-    background-color: #45a049;
+    background-color: #e10600; /* Rojo más oscuro para hover */
+    color: #ffffff; /* Texto blanco en hover */
     transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra mejorada en hover */
 }
-
   /* Animaciones */
 @keyframes fadeInDown {
     from {
