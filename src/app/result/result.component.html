@@ -1,0 +1,8 @@
+<div class="result-container">
+    <h2>Tu puntuación: {{score}} puntos</h2>
+    <form (ngSubmit)="submitScore()">
+        <label for="playerName">Introduce tu nombre:</label>
+        <input id="playerName" [(ngModel)]="playerName" name="playerName" required />
+        <button type="submit">Enviar</button>
+    </form>
+</div>

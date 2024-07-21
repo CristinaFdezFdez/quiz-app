@@ -1,0 +1,9 @@
+<div class="quiz-container">
+    <h2>Pregunta {{currentQuestionIndex + 1}} de {{questions.length}}</h2>
+    <p>{{currentQuestion.question}}</p>
+    <div *ngFor="let answer of currentQuestion.answers; let i = index">
+        <button (click)="checkAnswer(i)" [disabled]="isAnswerSelected">{{answer}}</button>
+    </div>
+    <div *ngIf="feedback" class="feedback">{{feedback}}</div>
+    <div class="timer">Tiempo restante: {{timer}} segundos</div>
+</div>

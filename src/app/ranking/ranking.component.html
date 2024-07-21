@@ -1,0 +1,11 @@
+<div class="ranking-container">
+    <h1 class="ranking-title">Ranking</h1>
+    <ul class="ranking-list">
+      <li *ngFor="let entry of ranking" class="ranking-item">
+        <span class="ranking-position">{{ entry.position }}</span>
+        <span class="ranking-name">{{ entry.nombre }}</span>
+        <span class="ranking-score">{{ entry.puntuacion }} puntos</span>
+        </li>
+    </ul>
+    <button class="home-button" routerLink="/">Volver a inicio</button>
+</div>
