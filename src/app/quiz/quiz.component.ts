@@ -71,6 +71,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   isAnswerSelected: boolean = false;
   userScore: number = 0;
   feedback: string = '';
+  feedbackTimer: Subscription | null = null;
 
   constructor(private router: Router) {}
 
@@ -87,6 +88,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.currentQuestion = this.questions[this.currentQuestionIndex];
     this.timer = 30;
     this.isAnswerSelected = false;
+    this.feedback = ''; // Limpiar la retroalimentación antes de cargar la nueva pregunta
   }
 
   startTimer(): void {
