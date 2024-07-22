@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http'; // Asegúrate de importar HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { QuizService } from './quiz.service';
@@ -9,7 +9,7 @@ import { QuizService } from './quiz.service';
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule], // Asegúrate de importar HttpClientModule aquí
+  imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
@@ -27,13 +27,22 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.quizService.getQuestions().subscribe((data: any) => {
-      this.questions = data.results.map((q: any) => ({
-        question: q.question,
-        answers: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
-        correctAnswerIndex: q.incorrect_answers.length
-      }));
+      this.questions = data.results.map((q: any) => {
+        // Ordena las respuestas y encuentra el índice de la respuesta correcta
+        const answers = [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5);
+        const correctAnswerIndex = answers.indexOf(q.correct_answer);
+
+        return {
+          question: q.question,
+          answers: answers,
+          correctAnswerIndex: correctAnswerIndex
+        };
+      });
       this.loadQuestion();
       this.startTimer();
+    }, error => {
+      console.error('Error al cargar las preguntas', error);
+      this.feedback = 'No se pudieron cargar las preguntas.';
     });
   }
 
