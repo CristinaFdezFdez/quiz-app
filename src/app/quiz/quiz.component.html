@@ -1,9 +1,25 @@
-<div class="quiz-container">
-    <h2>Pregunta {{currentQuestionIndex + 1}} de {{questions.length}}</h2>
-    <p>{{questions[currentQuestionIndex]?.question}}</p>
-    <div *ngFor="let answer of questions[currentQuestionIndex]?.answers; let i = index">
-        <button (click)="checkAnswer(i)" [disabled]="isAnswerSelected">{{answer}}</button>
+<div class="quiz-container" *ngIf="questions.length > 0">
+    <h2>{{ currentQuestion.question }}</h2>
+
+  <div *ngFor="let answer of currentQuestion.answers; let i = index">
+    <button (click)="checkAnswer(i)" [disabled]="isAnswerSelected">
+        {{ answer }}
+    </button>
+</div>
+
+    <div class="feedback" *ngIf="feedback">
+        {{ feedback }}
     </div>
-    <div *ngIf="feedback" class="feedback">{{feedback}}</div>
-    <div class="timer">Tiempo restante: {{timer}} segundos</div>
+
+    <div class="timer">
+    Tiempo restante: {{ timer }} segundos
+    </div>
+
+    <div class="score">
+        Puntuación: {{ userScore }}
+    </div>
+</div>
+
+<div *ngIf="questions.length === 0">
+    <p>Cargando preguntas...</p>
 </div>

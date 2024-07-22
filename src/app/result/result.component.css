@@ -5,7 +5,7 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    background: linear-gradient(135deg, #1f1c18, #6b6b6b);
     color: #fff;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -37,7 +37,7 @@
 .result-container button {
     padding: 10px 20px;
     font-size: 1.2rem;
-    background-color: #ff6f61;
+    background-color: #e10600;
     color: #fff;
     border: none;
     border-radius: 5px;

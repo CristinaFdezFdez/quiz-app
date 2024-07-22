@@ -1,69 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; // Asegúrate de importar HttpClientModule
 import { RouterModule } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
+import { QuizService } from './quiz.service';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule], // Asegúrate de importar HttpClientModule aquí
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit, OnDestroy {
-  questions: any[] = [
-    {
-      question: '¿Quién es el piloto con más títulos de MotoGP?',
-      answers: ['Valentino Rossi', 'Giacomo Agostini', 'Marc Márquez'],
-      correctAnswerIndex: 1 // Agostini
-    },
-    {
-      question: '¿En qué año ganó Valentino Rossi su primer campeonato de MotoGP?',
-      answers: ['1998', '2001', '2005'],
-      correctAnswerIndex: 1 // 2001
-    },
-    {
-      question: '¿Cuál es el equipo para el que corre actualmente (2024) Marc Márquez?',
-      answers: ['Gresini', 'Yamaha', 'Honda'],
-      correctAnswerIndex: 0 // Gresini
-    },
-    {
-      question: '¿Qué piloto ganó el campeonato de MotoGP en 2023?',
-      answers: ['Fabio Quartararo', 'Pecco Bagnaia', 'Jorge Martín'],
-      correctAnswerIndex: 1 // Pecco Bagnaia
-    },
-    {
-      question: '¿Cuál es el nombre del circuito más largo en el calendario de MotoGP?',
-      answers: ['Circuito de Mugello', 'Circuito de Phillip Island', 'Circuito de Spa-Francorchamps'],
-      correctAnswerIndex: 0 // Circuito de Mugello
-    },
-    {
-      question: '¿Quién fue el primer piloto en ganar un campeonato de MotoGP con una moto electrónica en 2020?',
-      answers: ['Andrea Dovizioso', 'Maverick Viñales', 'Joan Mir'],
-      correctAnswerIndex: 2 // Joan Mir
-    },
-    {
-      question: '¿Cuál es el apodo de Valentino Rossi?',
-      answers: ['Il Dottore', 'Pato', 'The medico'],
-      correctAnswerIndex: 0 // Il Dottore
-    },
-    {
-      question: '¿Qué piloto italiano es conocido como "The Doctor"?',
-      answers: ['Luca Cadalora', 'Valentino Rossi', 'Marco Melandri'],
-      correctAnswerIndex: 1 // Valentino Rossi
-    },
-    {
-      question: '¿Cuál es el nombre del circuito que se encuentra en la isla de Phillip Island?',
-      answers: ['Mugello Circuit', 'Phillip Island Circuit', 'Laguna Seca'],
-      correctAnswerIndex: 1 // Phillip Island Circuit
-    },
-    {
-      question: '¿Qué fabricante de motos es conocido por su famoso modelo M1?',
-      answers: ['Yamaha', 'Suzuki', 'Kawasaki'],
-      correctAnswerIndex: 0 // Yamaha
-    }
-  ];
+  questions: any[] = [];
   currentQuestionIndex: number = 0;
   currentQuestion: any = {};
   timer: number = 30;
@@ -71,13 +22,19 @@ export class QuizComponent implements OnInit, OnDestroy {
   isAnswerSelected: boolean = false;
   userScore: number = 0;
   feedback: string = '';
-  feedbackTimer: Subscription | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.loadQuestion();
-    this.startTimer();
+    this.quizService.getQuestions().subscribe((data: any) => {
+      this.questions = data.results.map((q: any) => ({
+        question: q.question,
+        answers: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
+        correctAnswerIndex: q.incorrect_answers.length
+      }));
+      this.loadQuestion();
+      this.startTimer();
+    });
   }
 
   ngOnDestroy(): void {
@@ -88,7 +45,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.currentQuestion = this.questions[this.currentQuestionIndex];
     this.timer = 30;
     this.isAnswerSelected = false;
-    this.feedback = ''; // Limpiar la retroalimentación antes de cargar la nueva pregunta
+    this.feedback = ''; // Limpiar feedback al cargar una nueva pregunta
   }
 
   startTimer(): void {
