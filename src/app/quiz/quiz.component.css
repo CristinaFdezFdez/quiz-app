@@ -16,7 +16,7 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease-in-out;
-    color: #000000; 
+    color: white; 
 }
 
 .quiz-container p {
@@ -53,14 +53,14 @@
     margin-top: 1rem;
     font-size: 1.5rem;
     animation: fadeIn 1s ease-in-out;
-    color: #000000; 
+    color: white; 
 }
 
 .score {
     margin-top: 1rem;
     font-size: 1.2rem;
     animation: fadeIn 1s ease-in-out;
-    color: #000000; 
+    color: white; 
 }
 
 @keyframes fadeInDown {
