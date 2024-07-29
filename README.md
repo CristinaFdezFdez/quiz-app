@@ -1,7 +1,9 @@
 # QuizApp
-![Captura de pantalla 2024-07-29 191430](https://github.com/user-attachments/assets/ed9c0a22-abd9-448c-a2ac-0395f144ce14)
-![Captura de pantalla 2024-07-29 191548](https://github.com/user-attachments/assets/b72c46c2-15b3-4f57-af1a-2fd615660eb7)
 ![Captura de pantalla 2024-07-29 191422](https://github.com/user-attachments/assets/9f6bd675-424c-457e-a151-3682afa78694)
+
+![Captura de pantalla 2024-07-29 191430](https://github.com/user-attachments/assets/ed9c0a22-abd9-448c-a2ac-0395f144ce14)
+
+![Captura de pantalla 2024-07-29 191548](https://github.com/user-attachments/assets/b72c46c2-15b3-4f57-af1a-2fd615660eb7)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
